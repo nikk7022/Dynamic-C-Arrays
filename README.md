@@ -11,7 +11,7 @@ All you have to do is put `dyn_array.h` inside your project folder and include i
 - Automatic resizing
 - Type-specific arrays
 - Nesting other arrays into an array
-- Strings
+- Dynamic strings
 - Support for standard `string.h` library
 
 ### Functions:
