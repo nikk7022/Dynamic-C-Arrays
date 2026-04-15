@@ -11,8 +11,8 @@ All you have to do is put `dyn_array.h` inside your project folder and include i
 - Automatic resizing
 - Type-specific arrays
 - Nesting other arrays into an array
-- Strings
-- Support for standard `string.h` library
+- Dynamic strings control for character arrays
+- Compatible with standard `string.h` library functions
 
 ### Functions:
 
@@ -26,11 +26,17 @@ int         type_size(type_array *array);
 type_array  *type_copy(type_array *array);
 void        type_nest(type_array *array, type_array *nested);
 int         type_nest_size(type_array *array);
+void        type_unnest(type_array *array, int index, type_array **newarray);
+void        type_denest(type_array *array, int index);
 
 /*Only char arrays*/
 void        string_input(char_array *array);
 void        string_set(char_array *array, const char *string);
 void        string_add(char_array *array, char_array *array2);
+
+/*Optional*/
+type           type_value(type_array *array, int index);       /*replacement*/ array->data[index]
+type*          type_pointer(type_array *array);                /*replacement*/ array->data / array->nest[index]
 ```
 
 ### Memory Management
@@ -54,6 +60,8 @@ int main() {
     for (int i = 0; i < int_size(numbers); i++) {
         printf("%d\n", numbers->data[i]);
     }
+
+    int_free(numbers);
 }
 ```
 #### Example 2: Basic nesting and print
@@ -85,6 +93,8 @@ int main() {
             printf("%d\n", groups->nest[i]->data[j]);
         }
     }
+
+    int_free(groups); // All nested arrays of `groups` array are freed as well
 }
 ```
 
@@ -97,6 +107,8 @@ int main() {
     char_array *string = char_new();
     string_set(string, "Hello World!");
     printf("%s", string->data);
+
+    char_free(string);
 }
 ```
 
@@ -109,5 +121,7 @@ int main() {
     char_array *name = char_new();
     string_input(name);
     printf("%s", name->data);
+
+    char_free(name);
 }
 ```
