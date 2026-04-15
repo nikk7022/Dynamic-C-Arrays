@@ -134,6 +134,7 @@ static inline void t##_denest(t##_array *array, int index) { \
 \
 
 DEFINE_ARRAY(int)
+DEFINE_ARRAY(short)
 DEFINE_ARRAY(long)
 DEFINE_ARRAY(float)
 DEFINE_ARRAY(double)
@@ -165,6 +166,19 @@ static inline void string_add(char_array *array, char_array *array2) {
     }
 
     char_add(array, '\0');
+}
+
+static inline void string_insert(char_array *array, char_array *array2, int index) {
+    for (int i = 0; i < array->size; i++) {
+        if (i = index) {
+            for (int j = 0; j < array2->size; j++) {
+                if (array2->data[j] != '\0') {
+                    char_insert(array, array2->data[j], i);
+                    i++;
+                }
+            }
+        }
+    }
 }
 
 #endif

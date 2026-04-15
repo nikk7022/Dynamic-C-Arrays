@@ -17,15 +17,13 @@ All you have to do is put `dyn_array.h` inside your project folder and include i
 ### Functions:
 
 ```c
-type_array  *type_new(void);
+type_array* type_new(void);
+type_array* type_copy(type_array *array);
 void        type_free(type_array *array);
 void        type_add(type_array *array, type element);
 void        type_remove(type_array *array, int index);
 void        type_insert(type_array *array, type element, int index);
-int         type_size(type_array *array);
-type_array  *type_copy(type_array *array);
 void        type_nest(type_array *array, type_array *nested);
-int         type_nest_size(type_array *array);
 void        type_unnest(type_array *array, int index, type_array **newarray);
 void        type_denest(type_array *array, int index);
 
@@ -35,8 +33,10 @@ void        string_set(char_array *array, const char *string);
 void        string_add(char_array *array, char_array *array2);
 
 /*Optional*/
-type           type_value(type_array *array, int index);       /*replacement*/ array->data[index]
-type*          type_pointer(type_array *array);                /*replacement*/ array->data / array->nest[index]
+int         type_size(type_array *array);               /*replacement*/ array->size
+int         type_nest_size(type_array *array);          /*replacement*/ array->nest_size
+type        type_value(type_array *array, int index);   /*replacement*/ array->data[index]
+type*       type_pointer(type_array *array);            /*replacement*/ array->data / array->nest[index]
 ```
 
 ### Memory Management
