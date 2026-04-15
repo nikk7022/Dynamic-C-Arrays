@@ -170,7 +170,7 @@ static inline void string_add(char_array *array, char_array *array2) {
 
 static inline void string_insert(char_array *array, char_array *array2, int index) {
     for (int i = 0; i < array->size; i++) {
-        if (i = index) {
+        if (i == index) {
             for (int j = 0; j < array2->size; j++) {
                 if (array2->data[j] != '\0') {
                     char_insert(array, array2->data[j], i);
