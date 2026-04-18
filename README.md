@@ -31,6 +31,7 @@ void        type_denest(type_array *array, int index);
 void        string_input(char_array *array);
 void        string_set(char_array *array, const char *string);
 void        string_add(char_array *array, char_array *array2);
+void        string_insert(char_array *array, char_array *array2, int index);
 
 /*Optional*/
 int         type_size(type_array *array);               /*replacement*/ array->size
