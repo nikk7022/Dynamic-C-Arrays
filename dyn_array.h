@@ -32,10 +32,10 @@ static t##_array* t##_new() {                     \
     array->nest = malloc(4 * sizeof(t##_array*)); \
     array->nest_cap = 4;                          \
     array->nest_size = 0;                         \
-    else return array;                            \
+    return array;                                 \
 }                                                 \
 \
-static void t##_free(t##_array *array) {  \
+static void t##_free(t##_array *array) {         \
     free(array->data);                           \
     for (int i = 0; i < array->nest_size; i++) { \
         t##_free(array->nest[i]);                \
@@ -138,8 +138,8 @@ static void t##_denest(t##_array *array, int index) {        \
     t##_nest_resize(array);                                  \
 }                                                            \
 \
-static inline void t##_clearnest(t##_*array, int ) { \
-    t##_array->nest_size = 0;                        \
+static inline void t##_clearnest(t##_array *array) { \
+    array->nest_size = 0;                        \
 }                                                    \
 \
 
