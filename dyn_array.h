@@ -77,6 +77,10 @@ static void t##_insert(t##_array *array, t value, int index) { \
     array->size++;                                             \
 }                                                              \
 \
+static inline void t##_clear(t##_array *array) { \
+    array->size = 0;                             \
+}                                                \
+\
 static inline int t##_size(t##_array *array) { \
     return array->size;                        \
 }                                              \
@@ -133,6 +137,10 @@ static void t##_denest(t##_array *array, int index) {        \
     array->nest_size--;                                      \
     t##_nest_resize(array);                                  \
 }                                                            \
+\
+static inline void t##_clearnest(t##_*array, int ) { \
+    t##_array->nest_size = 0;                        \
+}                                                    \
 \
 
 DEFINE_ARRAY(int)

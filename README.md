@@ -17,6 +17,7 @@ All you have to do is put `dyn_array.h` inside your project folder and include i
 ### Functions:
 
 ```c
+/*Essential*/
 type_array* type_new(void);
 type_array* type_copy(type_array *array);
 void        type_free(type_array *array);
@@ -27,7 +28,7 @@ void        type_nest(type_array *array, type_array *nested);
 void        type_unnest(type_array *array, int index, type_array **newarray);
 void        type_denest(type_array *array, int index);
 
-/*Only char arrays*/
+/*Special*/
 void        string_input(char_array *array);
 void        string_set(char_array *array, const char *string);
 void        string_add(char_array *array, char_array *array2);
@@ -36,6 +37,8 @@ void        string_insert(char_array *array, char_array *array2, int index);
 /*Optional*/
 int         type_size(type_array *array);               /*replacement*/ array->size
 int         type_nest_size(type_array *array);          /*replacement*/ array->nest_size
+void        type_clear(type_array *array);              /*replacement*/ array->size = 0;
+void        type_clearnest(type_array *array);          /*replacement*/ array->nest_size = 0;
 type        type_value(type_array *array, int index);   /*replacement*/ array->data[index]
 type*       type_pointer(type_array *array);            /*replacement*/ array->data / array->nest[index]
 ```
